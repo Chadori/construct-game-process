@@ -24,37 +24,43 @@ class Process extends IProcessInstance
 ```
 
 ### API
-The supported methods and properties to use in Construct 3's scripting feature with the Process object.
+The supported methods and properties to use in Construct 3's scripting feature with the Process object `(v4.0.0.0)`.
 For the detailed description and usage of the methods and properties, please refer to the [official object documentation](https://www.constructcollection.com/construct-game-process).
 
 #### Globals
 - Context - retrieve the current instance of the Process object.
 
 #### Actions
-- addTask(task, func, order)
+- addTask(taskName, functionName = null, taskOrder = "async")
   - `task` - the name of the target task from the process.
 
-  **Optional:** If set, this will add special tasks with a callback function with customizable order. Otherwise, this will only add a regular task without a callback function and will run asynchronously.
+  **Optional:** If set, this will add a special task with a task function and custom running order. Otherwise, this will only add an asynchronous task without a task function.
 
-  - `func` - the name of the callback function. [Optional: Fill with `order` to add a special task.]
-  - `order` - the order in which to run the callback function. [Optional: Fill with `func` to add a special task.]
-     - `"async"` - will run all functions without waiting for the other tasks to finish.
-     - `"sync-start"` - will wait for the earlier task to finish before calling the next one.
-     - `"sync-end"` - will wait for all other tasks to finish before running, synchronously.
-- startProcess(process)
-- setTaskState(process, task, perc)
+  - `func` - the name of the task function which fires on task activation. [Optional]
+  - `order` - the order in which to activate a task, including firing the task function. [Optional: Defaults to `async`.]
+     - `"start"` - will run synchronously at the start. The process will wait for the earlier `start` tasks to finish before activating the next one.
+     - `"async"` - will asynchronously run all tasks at once without waiting for the earlier `async` tasks to finish. The list of `async` tasks will only activate after all `start` tasks have finished.
+     - `"end"` - will wait for all `start` and `async` tasks to finish before going through the `end` tasks. The `end` tasks will run synchronously at the end, the process will wait for the earlier `end` tasks to finish before activating the next one.
+- setTaskProgress(taskName, processName, percentage)
+- startProcess(processName)
+- stopProcess(processName)
 
 #### Conditions
-- hasTask(process, task)
-- isProcessing(process)
-- isCompleted(process)
+- isProcessing(processName)
+- hasTask(taskName, processName)
+- hasTaskFunction(taskName, processName)
+- isTaskCompleted(taskName, processName)
+- isProcessCompleted(processName)
 
 #### Expressions
-- currentTask(process)
-- currentPercentage(process)
-- currentFunction(process)
-- currentProcess()
-- totalPercentage(process)
+- currentProcess
+- currentTotalProgress
+- currentTask
+- currentTaskProgress
+- getCurrentTaskOfPorcess(processName)
+- getTaskProgress(taskName, processName)
+- getTaskFunctionName(taskName, processName)
+- getTotalProgress(processName)
 
 ### Support
 - [Website](https://www.constructcollection.com/)
