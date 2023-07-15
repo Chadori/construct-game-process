@@ -58,7 +58,7 @@ For the detailed description and usage of the methods and properties, please ref
 - currentTotalProgress
 - currentTask
 - currentTaskProgress
-- getCurrentTaskOfPorcess(processName)
+- getCurrentTaskOfProcess(processName)
 - getTaskProgress(taskName, processName)
 - getTaskFunctionName(taskName, processName)
 - getTotalProgress(processName)
