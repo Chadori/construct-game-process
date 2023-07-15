@@ -49,6 +49,7 @@ For the detailed description and usage of the methods and properties, please ref
 - isProcessing(processName)
 - hasTask(taskName, processName)
 - hasTaskFunction(taskName, processName)
+- isTaskRunning(taskName, processName)
 - isTaskCompleted(taskName, processName)
 - isProcessCompleted(processName)
 
